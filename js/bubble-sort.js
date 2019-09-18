@@ -1,17 +1,24 @@
-//ソート前の配列データ
-var a = [1,3,10,2,8];
+function sort() {
+  // convert input array to int array
+  const inputArray = document
+    .getElementsByClassName("input-array")[0]
+    .value.split(",");
+  let inputIntArray = [];
+  for (let i = 0; i < inputArray.length; i++) {
+    inputIntArray.push(Number(inputArray[i]));
+  }
 
-//調べる範囲の開始位置を１つずつ後ろへ移動するfor文
-for(var i = 0; i < a.length; i++){
-    //後ろから前に向かって小さい値を浮かび上がらせるfor文
-    for(var j = a.length-1; j>i ; j-- ){
-        //隣りあう２つの値を比べて、後ろが小さければ交換する
-        if(a[j]<a[j-1]){
-            var tmp = a[j];
-            a[j] = a[j-1];
-            a[j-1] =tmp;
-        }
+  // bubble sort
+  for (var i = 0; i < inputIntArray.length; i++) {
+    for (var j = inputIntArray.length - 1; j > i; j--) {
+      if (inputIntArray[j] < inputIntArray[j - 1]) {
+        var tmp = inputIntArray[j];
+        inputIntArray[j] = inputIntArray[j - 1];
+        inputIntArray[j - 1] = tmp;
+      }
     }
+  }
+
+  // print
+  document.getElementsByClassName("result")[0].innerHTML = inputIntArray;
 }
-//ソート後の配列の表示
-console.log(a);
